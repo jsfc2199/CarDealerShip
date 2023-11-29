@@ -1,8 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class CarsService {
-    
   private cars = [
     {
       id: 1,
@@ -22,12 +21,15 @@ export class CarsService {
   ];
 
   //retornar todos los carros
-  findAll(){
-    return this.cars
+  findAll() {
+    return this.cars;
   }
 
   //retornar carro por id
-  findById(id:number){
-    return this.cars.find(car => car.id === id)
+  findById(id: number) {
+    const car = this.cars.find((car) => car.id === id);
+
+    if (!car) throw new NotFoundException(`Car with id '${id}' not fournd`);
+    return car;
   }
 }
