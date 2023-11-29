@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { CarsService } from './cars.service';
 
 @Controller('cars')
@@ -14,8 +14,11 @@ export class CarsController {
 
     //El get debe contener un segmento de url adicional para diferenciarse de otros
     //Extraemos tambien el parametro que viene de la url, es decir obtener lo que viene en el :id y almacenarlo en id, usando @Param    
+
+    //Usamos el pipe ParseIntPipe para parsear lo que nos llegue como numero
     @Get(':id')
-    getCarById(@Param ('id') id:string){
-      return this.carsService.findById(+id)      
+    getCarById(@Param ('id', ParseIntPipe) id:number){
+
+      return this.carsService.findById(id)      
     }
 }
