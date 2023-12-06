@@ -68,4 +68,12 @@ export class CarsService {
 
     return carInDb
   }
+
+  deleteCar(id: string){
+    const car  = this.findById(id)
+
+    this.cars = this.cars.filter(car => {
+      return car.id !== id 
+    })     
+  }
 }
