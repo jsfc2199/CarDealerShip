@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Car } from './interfaces/car.interface';
 import { v4 as uuid} from 'uuid'
-import { CreateCarDTO } from './dto/create-car.dto';
+import { CreateCarDTO, UpdateCarDTO } from './dto';
+
 
 @Injectable()
 export class CarsService {
@@ -45,7 +46,26 @@ export class CarsService {
         //trambien se puede enviar en vez de brand y model ...carDto
       }
       this.cars.push(car)
-      
+
       return car
+  }
+
+  updateCar(id: string, updateCar: UpdateCarDTO){
+    
+    let carInDb = this.findById(id) //para no validar dos veces lo mismo
+
+    this.cars = this.cars.map(car => {
+      if(car.id === id){
+        carInDb = {
+          ...carInDb, //esparzo las propiedaades actualices del carro
+          ...updateCar, //reemplazo las propiedades de carInDb por las nuevas en updateCar
+          id //sobre escribo el id que venga en updateCar por el original
+        }
+        return carInDb
+      }
+      return car; //si no es el carro que tenga el mismo id simplemente se retorna lo que habia
+    })
+
+    return carInDb
   }
 }
