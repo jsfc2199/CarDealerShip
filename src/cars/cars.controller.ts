@@ -3,6 +3,7 @@ import { CarsService } from './cars.service';
 import { CreateCarDTO } from './dto/create-car.dto';
 
 @Controller('cars')
+// @UsePipes(ValidationPipe)
 export class CarsController {
 
     //inyección de dependencias del servicio
@@ -24,7 +25,7 @@ export class CarsController {
     }
 
     @Post()
-    @UsePipes(ValidationPipe)
+    // @UsePipes(ValidationPipe)
     createCar( @Body() createCarDTO: CreateCarDTO ){
       return{
         createCarDTO
