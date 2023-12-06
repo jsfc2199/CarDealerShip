@@ -17,7 +17,7 @@ export class CarsController {
 
     //Usamos el pipe ParseIntPipe para parsear lo que nos llegue como numero
     @Get(':id')
-    getCarById(@Param ('id', ParseIntPipe) id:number){
+    getCarById(@Param ('id') id:string){
 
       return this.carsService.findById(id)      
     }
@@ -30,9 +30,12 @@ export class CarsController {
     }
 
     @Patch(':id')
-    updateCar( @Param('id', ParseIntPipe )id: number){
+    updateCar( 
+      @Param('id', ParseIntPipe )id: number,
+      @Body() body: any
+      ){
       return{
-        id
+        body
       }
     }
 
