@@ -26,6 +26,11 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## PopulateDB
+```
+http://localhost:3000/seed
+```
+
 ## Installation
 
 ```bash

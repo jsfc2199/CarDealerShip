@@ -3,7 +3,7 @@ import { CreateBrandDto } from './dto/create-brand.dto';
 import { UpdateBrandDto } from './dto/update-brand.dto';
 import { Brand } from './entities/brand.entity';
 import { v4 as uuid } from 'uuid';
-import { Car } from '../../dist/cars/interfaces/car.interface';
+
 
 @Injectable()
 export class BrandsService {
